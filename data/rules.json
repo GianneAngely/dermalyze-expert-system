@@ -1,0 +1,39 @@
+{
+  "penyakit": [
+    {
+      "id": "J01",
+      "nama": "Melanoma Maligna",
+      "deskripsi": "Jenis kanker kulit paling berbahaya yang berkembang dari melanosit. Dapat menyebar ke organ lain jika tidak segera ditangani secara medis.",
+      "tingkat_risiko": "Sangat Tinggi",
+      "saran": ["Segera konsultasi ke dokter spesialis kulit (Sp.KK) untuk biopsi", "Hindari paparan sinar matahari langsung sepenuhnya", "Jangan menggaruk atau memecahkan lesi"]
+    },
+    {
+      "id": "J02",
+      "nama": "Karsinoma Sel Basal (BCC)",
+      "deskripsi": "Kanker kulit yang paling umum terjadi. Tumbuh lambat dan jarang menyebar ke organ lain, namun dapat merusak jaringan kulit sekitarnya.",
+      "tingkat_risiko": "Sedang - Tinggi",
+      "saran": ["Kunjungi dokter kulit untuk pemeriksaan lesi fisik", "Gunakan tabir surya (SPF 50+) setiap hari di area terbuka", "Gunakan pakaian lengan panjang dan topi"]
+    },
+    {
+      "id": "J03",
+      "nama": "Karsinoma Sel Skuamosa (SCC)",
+      "deskripsi": "Kanker yang berkembang di sel skuamosa kulit akibat paparan sinar UV kronis. Berpotensi menyebar ke kelenjar getah bening jika dibiarkan.",
+      "tingkat_risiko": "Tinggi",
+      "saran": ["Segera lakukan pemeriksaan klinis untuk pengangkatan lesi", "Gunakan kacamata anti-UV dan pakaian pelindung", "Hindari keluar rumah pada jam 10 pagi - 4 sore"]
+    },
+    {
+      "id": "J04",
+      "nama": "Keratosis Aktinik (Prakanker)",
+      "deskripsi": "Bercak kasar dan bersisik pada kulit yang rusak akibat sinar matahari. Kondisi prakanker yang berpotensi berubah menjadi kanker kulit SCC.",
+      "tingkat_risiko": "Peringatan Dini (Prakanker)",
+      "saran": ["Perawatan ke dokter untuk membekukan/mengangkat lesi dengan nitrogen cair", "Wajib rutin menggunakan sunscreen SPF 50+", "Gunakan pelembab secara rutin"]
+    },
+    {
+      "id": "J05",
+      "nama": "Nevus Non-Kanker (Tahi Lalat Jinak)",
+      "deskripsi": "Tahi lalat atau bercak normal yang tidak menunjukkan tanda-tanda keganasan. Sebagian besar orang dewasa memilikinya.",
+      "tingkat_risiko": "Rendah (Aman)",
+      "saran": ["Lakukan pemeriksaan kulit mandiri (SADARI Kulit) sebulan sekali", "Tetap pantau jika ada perubahan ukuran atau warna", "Pencegahan dengan sunscreen secara umum"]
+    }
+  ]
+}

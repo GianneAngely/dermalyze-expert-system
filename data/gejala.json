@@ -1,0 +1,19 @@
+{
+  "gejala": [
+    {"id": "G01", "pertanyaan": "Apakah tahi lalat memiliki bentuk asimetris (tidak beraturan)?", "kategori": "ABCDE (Fisik)"},
+    {"id": "G02", "pertanyaan": "Apakah pinggiran tahi lalat terlihat tidak rata, kasar, atau kabur?", "kategori": "ABCDE (Fisik)"},
+    {"id": "G03", "pertanyaan": "Apakah tahi lalat memiliki lebih dari satu warna (campuran coklat, hitam, merah)?", "kategori": "ABCDE (Fisik)"},
+    {"id": "G04", "pertanyaan": "Apakah diameter tahi lalat lebih besar dari 6mm (seukuran penghapus pensil)?", "kategori": "ABCDE (Fisik)"},
+    {"id": "G05", "pertanyaan": "Apakah tahi lalat terus membesar atau berubah bentuk akhir-akhir ini?", "kategori": "ABCDE (Fisik)"},
+    {"id": "G06", "pertanyaan": "Apakah Anda sering beraktivitas di bawah sinar matahari tanpa tabir surya (sunscreen)?", "kategori": "Faktor Risiko"},
+    {"id": "G07", "pertanyaan": "Apakah Anda memiliki riwayat keluarga dengan penyakit kanker kulit?", "kategori": "Faktor Risiko"},
+    {"id": "G08", "pertanyaan": "Apakah kulit pada area tersebut terasa gatal, perih, atau nyeri?", "kategori": "Sensasi"},
+    {"id": "G09", "pertanyaan": "Apakah terdapat luka pada kulit yang tidak kunjung sembuh lebih dari 4 minggu?", "kategori": "Sensasi"},
+    {"id": "G10", "pertanyaan": "Apakah tahi lalat atau bercak sering berdarah atau mengeluarkan cairan?", "kategori": "Sensasi"},
+    {"id": "G11", "pertanyaan": "Apakah terdapat benjolan kecil yang mengkilap, seperti mutiara atau kemerahan?", "kategori": "Bentuk Lesi"},
+    {"id": "G12", "pertanyaan": "Apakah terdapat bercak kulit yang terasa kasar, bersisik, atau berkerak?", "kategori": "Bentuk Lesi"},
+    {"id": "G13", "pertanyaan": "Apakah benjolan terasa keras saat disentuh dan cepat membesar?", "kategori": "Bentuk Lesi"},
+    {"id": "G14", "pertanyaan": "Apakah kulit Anda sering mengalami luka bakar matahari (sunburn) hingga mengelupas?", "kategori": "Faktor Risiko"},
+    {"id": "G15", "pertanyaan": "Apakah Anda memiliki sangat banyak tahi lalat di sekujur tubuh (>50 buah)?", "kategori": "Faktor Risiko"}
+  ]
+}
