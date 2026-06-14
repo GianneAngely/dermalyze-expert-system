@@ -1,0 +1,16 @@
+{
+  "edukasi": [
+    {
+      "judul": "ABCDE pada Tahi Lalat",
+      "isi": "ABCDE adalah panduan pemeriksaan awal tahi lalat yang meliputi Asymmetry, Border, Color, Diameter, dan Evolution."
+    },
+    {
+      "judul": "Perlindungan dari Sinar UV",
+      "isi": "Gunakan sunscreen, pakaian pelindung, topi, dan hindari paparan matahari berlebihan pada pukul 10.00 sampai 16.00."
+    },
+    {
+      "judul": "Kapan Harus ke Dokter",
+      "isi": "Segera periksa ke dokter apabila lesi berubah bentuk, berubah warna, membesar, berdarah, nyeri, atau tidak sembuh lebih dari 4 minggu."
+    }
+  ]
+}
