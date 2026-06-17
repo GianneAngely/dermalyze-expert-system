@@ -1,0 +1,34 @@
+{
+  "test_cases": [
+    {
+      "id": "TC01",
+      "nama": "Skenario Risiko Melanoma",
+      "gejala": ["G01", "G02", "G03", "G04", "G05"],
+      "ekspektasi": "Melanoma Maligna"
+    },
+    {
+      "id": "TC02",
+      "nama": "Skenario Risiko BCC",
+      "gejala": ["G11", "G17", "G10", "G16"],
+      "ekspektasi": "Karsinoma Sel Basal (BCC)"
+    },
+    {
+      "id": "TC03",
+      "nama": "Skenario Risiko SCC",
+      "gejala": ["G12", "G13", "G21"],
+      "ekspektasi": "Karsinoma Sel Skuamosa (SCC)"
+    },
+    {
+      "id": "TC04",
+      "nama": "Skenario Keratosis Aktinik",
+      "gejala": ["G06", "G14", "G12"],
+      "ekspektasi": "Keratosis Aktinik"
+    },
+    {
+      "id": "TC05",
+      "nama": "Skenario Risiko Rendah",
+      "gejala": ["G06", "G19"],
+      "ekspektasi": "Risiko Rendah / Observasi Mandiri"
+    }
+  ]
+}

@@ -1,2 +1,21 @@
-# dermalyze-expert-system-
-Sistem Pakar Deteksi Dini Risiko Kanker Kulit menggunakan Forward Chaining dan Certainty Factor.
+# Dermalyze Expert System
+
+Dermalyze adalah prototype sistem pakar untuk skrining awal risiko lesi kulit berbasis Forward Chaining dan Certainty Factor.
+dermalyze berguna untuk mencegah kanker kulit
+
+## Fitur
+
+- Kuesioner gejala klinis
+- Basis pengetahuan berbasis JSON
+- Mesin inferensi Forward Chaining
+- Perhitungan Certainty Factor
+- Explanation Facility
+- Riwayat konsultasi
+
+## Cara Menjalankan
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+

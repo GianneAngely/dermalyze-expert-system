@@ -1,0 +1,114 @@
+{
+  "gejala": [
+    {
+      "id": "G01",
+      "pertanyaan": "Apakah tahi lalat memiliki bentuk asimetris atau tidak beraturan?",
+      "kategori": "ABCDE"
+    },
+    {
+      "id": "G02",
+      "pertanyaan": "Apakah pinggiran tahi lalat terlihat tidak rata, kasar, bergerigi, atau kabur?",
+      "kategori": "ABCDE"
+    },
+    {
+      "id": "G03",
+      "pertanyaan": "Apakah tahi lalat memiliki lebih dari satu warna, misalnya coklat, hitam, merah, putih, atau biru?",
+      "kategori": "ABCDE"
+    },
+    {
+      "id": "G04",
+      "pertanyaan": "Apakah diameter tahi lalat lebih besar dari 6 mm atau lebih besar dari ukuran penghapus pensil?",
+      "kategori": "ABCDE"
+    },
+    {
+      "id": "G05",
+      "pertanyaan": "Apakah tahi lalat atau bercak kulit mengalami perubahan ukuran, bentuk, warna, atau rasa akhir-akhir ini?",
+      "kategori": "ABCDE"
+    },
+    {
+      "id": "G06",
+      "pertanyaan": "Apakah Anda sering beraktivitas di bawah sinar matahari tanpa menggunakan sunscreen?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G07",
+      "pertanyaan": "Apakah Anda memiliki riwayat keluarga dengan kanker kulit?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G08",
+      "pertanyaan": "Apakah area kulit tersebut terasa gatal, perih, nyeri, atau tidak nyaman?",
+      "kategori": "Sensasi"
+    },
+    {
+      "id": "G09",
+      "pertanyaan": "Apakah terdapat luka pada kulit yang tidak kunjung sembuh lebih dari 4 minggu?",
+      "kategori": "Sensasi"
+    },
+    {
+      "id": "G10",
+      "pertanyaan": "Apakah tahi lalat, benjolan, atau bercak kulit sering berdarah atau mengeluarkan cairan?",
+      "kategori": "Sensasi"
+    },
+    {
+      "id": "G11",
+      "pertanyaan": "Apakah terdapat benjolan kecil yang mengkilap, transparan, kemerahan, atau tampak seperti mutiara?",
+      "kategori": "Bentuk Lesi"
+    },
+    {
+      "id": "G12",
+      "pertanyaan": "Apakah terdapat bercak kulit yang terasa kasar, bersisik, menebal, atau berkerak?",
+      "kategori": "Bentuk Lesi"
+    },
+    {
+      "id": "G13",
+      "pertanyaan": "Apakah benjolan terasa keras saat disentuh dan terlihat cepat membesar?",
+      "kategori": "Bentuk Lesi"
+    },
+    {
+      "id": "G14",
+      "pertanyaan": "Apakah kulit Anda sering mengalami sunburn atau luka bakar matahari hingga mengelupas?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G15",
+      "pertanyaan": "Apakah Anda memiliki sangat banyak tahi lalat di tubuh, misalnya lebih dari 50 buah?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G16",
+      "pertanyaan": "Apakah lesi tampak seperti luka terbuka yang sembuh lalu muncul kembali di tempat yang sama?",
+      "kategori": "Bentuk Lesi"
+    },
+    {
+      "id": "G17",
+      "pertanyaan": "Apakah permukaan lesi tampak mengilap, licin, atau seperti lilin?",
+      "kategori": "Bentuk Lesi"
+    },
+    {
+      "id": "G18",
+      "pertanyaan": "Apakah lesi muncul pada area yang sering terkena matahari seperti wajah, leher, tangan, atau lengan?",
+      "kategori": "Lokasi"
+    },
+    {
+      "id": "G19",
+      "pertanyaan": "Apakah usia Anda di atas 40 tahun?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G20",
+      "pertanyaan": "Apakah kulit Anda tergolong terang atau mudah terbakar ketika terkena matahari?",
+      "kategori": "Faktor Risiko"
+    },
+    {
+      "id": "G21",
+      "pertanyaan": "Apakah permukaan lesi terasa tebal, keras, kasar, atau menyerupai kutil?",
+      "kategori": "Tekstur"
+    },
+    {
+      "id": "G22",
+      "pertanyaan": "Apakah bercak atau luka kulit muncul berulang pada area yang sama?",
+      "kategori": "Perkembangan"
+    }
+  ]
+}

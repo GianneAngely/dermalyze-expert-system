@@ -1,0 +1,59 @@
+{
+  "penyakit": [
+    {
+      "id": "J01",
+      "nama": "Melanoma Maligna",
+      "deskripsi": "Jenis kanker kulit berbahaya yang berkembang dari sel melanosit. Kondisi ini perlu diperiksa secara medis karena dapat menyebar apabila tidak ditangani.",
+      "tingkat_risiko": "Sangat Tinggi",
+      "saran": [
+        "Segera konsultasi ke dokter spesialis kulit untuk pemeriksaan lanjutan.",
+        "Hindari paparan sinar matahari langsung pada area lesi.",
+        "Jangan menggaruk, memencet, atau mencoba menghilangkan lesi sendiri."
+      ]
+    },
+    {
+      "id": "J02",
+      "nama": "Karsinoma Sel Basal (BCC)",
+      "deskripsi": "Jenis kanker kulit yang umum terjadi dan biasanya tumbuh perlahan. Walaupun jarang menyebar, kondisi ini tetap dapat merusak jaringan kulit di sekitarnya.",
+      "tingkat_risiko": "Sedang - Tinggi",
+      "saran": [
+        "Lakukan pemeriksaan kulit ke dokter untuk memastikan kondisi lesi.",
+        "Gunakan sunscreen SPF 30 atau lebih saat beraktivitas di luar ruangan.",
+        "Gunakan pelindung fisik seperti topi, jaket, atau payung."
+      ]
+    },
+    {
+      "id": "J03",
+      "nama": "Karsinoma Sel Skuamosa (SCC)",
+      "deskripsi": "Kanker kulit yang berkembang dari sel skuamosa dan sering berkaitan dengan paparan sinar ultraviolet jangka panjang.",
+      "tingkat_risiko": "Tinggi",
+      "saran": [
+        "Segera lakukan pemeriksaan medis jika luka tidak sembuh atau mudah berdarah.",
+        "Hindari paparan matahari pada pukul 10.00 sampai 16.00.",
+        "Pantau perubahan ukuran, warna, dan tekstur lesi secara berkala."
+      ]
+    },
+    {
+      "id": "J04",
+      "nama": "Keratosis Aktinik",
+      "deskripsi": "Kondisi prakanker berupa bercak kasar atau bersisik yang biasanya muncul akibat kerusakan kulit karena sinar matahari.",
+      "tingkat_risiko": "Peringatan Dini",
+      "saran": [
+        "Konsultasikan ke dokter apabila bercak semakin tebal, nyeri, atau berdarah.",
+        "Gunakan sunscreen secara rutin setiap hari.",
+        "Kurangi aktivitas luar ruangan saat indeks UV tinggi."
+      ]
+    },
+    {
+      "id": "J05",
+      "nama": "Risiko Rendah / Observasi Mandiri",
+      "deskripsi": "Gejala yang dipilih belum cukup kuat untuk mengarah pada pola risiko tinggi berdasarkan rule base sistem.",
+      "tingkat_risiko": "Rendah",
+      "saran": [
+        "Lakukan pemeriksaan kulit mandiri secara rutin setiap bulan.",
+        "Tetap pantau apabila ada perubahan bentuk, warna, ukuran, atau rasa pada lesi.",
+        "Gunakan perlindungan kulit saat beraktivitas di bawah sinar matahari."
+      ]
+    }
+  ]
+}

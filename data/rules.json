@@ -1,0 +1,183 @@
+{
+  "rules": [
+    {
+      "id": "R01",
+      "kondisi": ["G01", "G02", "G03", "G05"],
+      "kesimpulan": "J01",
+      "cf_pakar": 0.92,
+      "alasan": "Kombinasi asimetri, tepi tidak rata, variasi warna, dan perubahan lesi merupakan pola ABCDE yang kuat."
+    },
+    {
+      "id": "R02",
+      "kondisi": ["G01", "G03", "G04", "G05"],
+      "kesimpulan": "J01",
+      "cf_pakar": 0.90,
+      "alasan": "Lesi asimetris dengan warna tidak merata, diameter besar, dan perubahan ukuran perlu dicurigai."
+    },
+    {
+      "id": "R03",
+      "kondisi": ["G02", "G03", "G05", "G10"],
+      "kesimpulan": "J01",
+      "cf_pakar": 0.88,
+      "alasan": "Batas tidak jelas, perubahan warna, evolusi lesi, dan perdarahan meningkatkan kecurigaan keganasan."
+    },
+    {
+      "id": "R04",
+      "kondisi": ["G01", "G02", "G03", "G04", "G05"],
+      "kesimpulan": "J01",
+      "cf_pakar": 0.96,
+      "alasan": "Kelima indikator ABCDE terpenuhi secara bersamaan."
+    },
+    {
+      "id": "R05",
+      "kondisi": ["G15", "G07", "G05"],
+      "kesimpulan": "J01",
+      "cf_pakar": 0.80,
+      "alasan": "Banyak tahi lalat, riwayat keluarga, dan perubahan lesi meningkatkan risiko melanoma."
+    },
+
+    {
+      "id": "R06",
+      "kondisi": ["G11", "G17", "G18"],
+      "kesimpulan": "J02",
+      "cf_pakar": 0.84,
+      "alasan": "Benjolan mengilap pada area terpapar matahari sesuai dengan pola risiko karsinoma sel basal."
+    },
+    {
+      "id": "R07",
+      "kondisi": ["G11", "G10", "G16"],
+      "kesimpulan": "J02",
+      "cf_pakar": 0.86,
+      "alasan": "Lesi mengilap yang mudah berdarah dan menyerupai luka berulang perlu dicurigai sebagai BCC."
+    },
+    {
+      "id": "R08",
+      "kondisi": ["G06", "G18", "G11"],
+      "kesimpulan": "J02",
+      "cf_pakar": 0.78,
+      "alasan": "Paparan sinar matahari dan benjolan mengilap mendukung indikasi BCC."
+    },
+    {
+      "id": "R09",
+      "kondisi": ["G17", "G16", "G22"],
+      "kesimpulan": "J02",
+      "cf_pakar": 0.82,
+      "alasan": "Lesi licin seperti lilin, luka berulang, dan muncul kembali di area sama mendukung risiko BCC."
+    },
+    {
+      "id": "R10",
+      "kondisi": ["G11", "G17", "G10", "G16"],
+      "kesimpulan": "J02",
+      "cf_pakar": 0.90,
+      "alasan": "Kombinasi benjolan mengilap, perdarahan, dan luka berulang merupakan pola kuat BCC."
+    },
+
+    {
+      "id": "R11",
+      "kondisi": ["G12", "G13", "G21"],
+      "kesimpulan": "J03",
+      "cf_pakar": 0.86,
+      "alasan": "Bercak bersisik, benjolan keras, dan tekstur menebal sesuai pola risiko SCC."
+    },
+    {
+      "id": "R12",
+      "kondisi": ["G09", "G10", "G13"],
+      "kesimpulan": "J03",
+      "cf_pakar": 0.84,
+      "alasan": "Luka tidak sembuh, perdarahan, dan benjolan cepat membesar perlu dievaluasi lebih lanjut."
+    },
+    {
+      "id": "R13",
+      "kondisi": ["G06", "G18", "G12"],
+      "kesimpulan": "J03",
+      "cf_pakar": 0.76,
+      "alasan": "Paparan UV dan bercak bersisik pada area terbuka dapat berkaitan dengan SCC."
+    },
+    {
+      "id": "R14",
+      "kondisi": ["G08", "G09", "G10"],
+      "kesimpulan": "J03",
+      "cf_pakar": 0.78,
+      "alasan": "Nyeri, luka tidak sembuh, dan perdarahan menunjukkan perlunya pemeriksaan klinis."
+    },
+    {
+      "id": "R15",
+      "kondisi": ["G12", "G21", "G18", "G06"],
+      "kesimpulan": "J03",
+      "cf_pakar": 0.88,
+      "alasan": "Lesi kasar dan menebal pada area terpapar UV mendukung risiko SCC."
+    },
+
+    {
+      "id": "R16",
+      "kondisi": ["G12", "G18", "G19"],
+      "kesimpulan": "J04",
+      "cf_pakar": 0.80,
+      "alasan": "Bercak kasar pada area terpapar matahari dan usia lebih tinggi sesuai risiko keratosis aktinik."
+    },
+    {
+      "id": "R17",
+      "kondisi": ["G06", "G14", "G12"],
+      "kesimpulan": "J04",
+      "cf_pakar": 0.78,
+      "alasan": "Paparan UV, riwayat sunburn, dan bercak bersisik mendukung risiko lesi prakanker."
+    },
+    {
+      "id": "R18",
+      "kondisi": ["G06", "G14", "G18", "G20"],
+      "kesimpulan": "J04",
+      "cf_pakar": 0.76,
+      "alasan": "Faktor paparan UV, sunburn, lokasi lesi, dan kulit mudah terbakar mendukung risiko prakanker."
+    },
+    {
+      "id": "R19",
+      "kondisi": ["G12", "G21", "G22"],
+      "kesimpulan": "J04",
+      "cf_pakar": 0.74,
+      "alasan": "Bercak kasar, menebal, dan berulang dapat menjadi tanda awal kerusakan kulit akibat sinar matahari."
+    },
+    {
+      "id": "R20",
+      "kondisi": ["G06", "G18", "G19", "G12"],
+      "kesimpulan": "J04",
+      "cf_pakar": 0.82,
+      "alasan": "Paparan matahari kronis, usia, lokasi terbuka, dan tekstur bersisik mendukung indikasi keratosis aktinik."
+    },
+
+    {
+      "id": "R21",
+      "kondisi": ["G06", "G14", "G20"],
+      "kesimpulan": "J05",
+      "cf_pakar": 0.45,
+      "alasan": "Faktor risiko paparan matahari ada, tetapi belum cukup menunjukkan pola kanker tanpa gejala lesi spesifik."
+    },
+    {
+      "id": "R22",
+      "kondisi": ["G04", "G06"],
+      "kesimpulan": "J05",
+      "cf_pakar": 0.40,
+      "alasan": "Diameter dan paparan matahari perlu dipantau, tetapi belum cukup untuk mengarah ke diagnosis risiko tinggi."
+    },
+    {
+      "id": "R23",
+      "kondisi": ["G08", "G12"],
+      "kesimpulan": "J05",
+      "cf_pakar": 0.42,
+      "alasan": "Rasa tidak nyaman dan tekstur kasar dapat terjadi pada iritasi kulit ringan, tetapi tetap perlu pemantauan."
+    },
+    {
+      "id": "R24",
+      "kondisi": ["G18", "G20"],
+      "kesimpulan": "J05",
+      "cf_pakar": 0.38,
+      "alasan": "Lokasi terpapar matahari dan kulit mudah terbakar menunjukkan kebutuhan pencegahan, bukan langsung keganasan."
+    },
+    {
+      "id": "R25",
+      "kondisi": ["G06", "G19"],
+      "kesimpulan": "J05",
+      "cf_pakar": 0.35,
+      "alasan": "Paparan sinar matahari dan faktor usia perlu diperhatikan, tetapi belum cukup tanpa tanda lesi spesifik."
+    }
+  ]
+}
