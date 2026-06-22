@@ -1,7 +1,7 @@
 # Dermalyze Expert System
 
 Dermalyze adalah prototype sistem pakar untuk skrining awal risiko lesi kulit berbasis Forward Chaining dan Certainty Factor.
-dermalyze berguna untuk mencegah kanker kulit
+dermalyze berguna untuk mencegah kanker kulit dan penyakit kulit lainnya
 
 ## Fitur
 
@@ -18,4 +18,3 @@ dermalyze berguna untuk mencegah kanker kulit
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
