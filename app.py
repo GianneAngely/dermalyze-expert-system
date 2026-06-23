@@ -6,7 +6,6 @@ from collections import defaultdict
 import plotly.graph_objects as go
 import streamlit as st
 
-# Pastikan import module lokal Anda tetap ada
 from knowledge_base import KnowledgeBase
 from inference_engine import ForwardChaining
 from backward_chaining import BackwardChaining
@@ -21,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# --- 2. CUSTOM CSS (CAREPLUS THEME) ---
+# --- 2. CUSTOM CSS ---
 st.markdown(
     """
 <style>
@@ -36,9 +35,6 @@ st.markdown(
     --bg-main: #f2fafa;
 }
 
-/* ================================
-   GLOBAL TEXT
-================================ */
 .stApp,
 .stApp p,
 .stApp label,
@@ -93,11 +89,6 @@ section[data-testid="stSidebar"] {
     color: var(--ink) !important;
 }
 
-.nav-brand span,
-.nav-brand div {
-    color: var(--ink) !important;
-}
-
 .nav-logo {
     color: var(--teal-primary) !important;
     font-size: 24px !important;
@@ -110,31 +101,22 @@ section[data-testid="stSidebar"] {
     font-weight: 600;
 }
 
-.nav-links a {
+/* nav items are spans with onclick — no <a> to avoid new-tab */
+.nav-links span {
     color: var(--ink-light) !important;
     cursor: pointer;
     transition: color 0.2s;
     text-decoration: none !important;
-}
-
-.nav-links a:hover {
-    color: var(--teal-primary) !important;
-}
-
-.nav-links a.active {
-    color: var(--teal-primary) !important;
-    border-bottom: 2px solid var(--teal-primary);
     padding-bottom: 2px;
 }
 
-.nav-btn {
-    background-color: var(--teal-primary) !important;
-    color: white !important;
-    padding: 10px 24px;
-    border-radius: 99px;
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 4px 12px rgba(85, 180, 180, 0.3);
+.nav-links span:hover {
+    color: var(--teal-primary) !important;
+}
+
+.nav-links span.active {
+    color: var(--teal-primary) !important;
+    border-bottom: 2px solid var(--teal-primary);
 }
 
 /* ================================
@@ -165,14 +147,13 @@ section[data-testid="stSidebar"] {
    FLOATING BAR
 ================================ */
 .floating-bar {
-background: transparent !important;
+    background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
     margin-bottom: 24px !important;
-
 }
 
 /* ================================
@@ -197,9 +178,7 @@ background: transparent !important;
     height: 100%;
 }
 
-.dept-card:hover {
-    transform: translateY(-5px);
-}
+.dept-card:hover { transform: translateY(-5px); }
 
 .dept-icon {
     font-size: 40px;
@@ -213,12 +192,9 @@ background: transparent !important;
     color: var(--ink) !important;
 }
 
-
 /* ================================
-   FINAL FIX — INPUT / NUMBER / SELECTBOX
+   INPUT / NUMBER / SELECTBOX
 ================================ */
-
-/* Main outer field */
 .stTextInput div[data-baseweb="input"] > div,
 .stNumberInput div[data-baseweb="input"] > div,
 .stSelectbox div[data-baseweb="select"] > div {
@@ -230,7 +206,6 @@ background: transparent !important;
     transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-/* Remove Streamlit default inner border */
 .stTextInput div[data-baseweb="input"],
 .stNumberInput div[data-baseweb="input"],
 .stTextInput input,
@@ -242,7 +217,6 @@ background: transparent !important;
     background: transparent !important;
 }
 
-/* Text color */
 .stTextInput input,
 .stNumberInput input,
 .stSelectbox input,
@@ -252,7 +226,6 @@ div[data-testid="stSelectbox"] * {
     -webkit-text-fill-color: var(--ink) !important;
 }
 
-/* Placeholder color */
 .stTextInput input::placeholder,
 .stNumberInput input::placeholder,
 .stSelectbox input::placeholder {
@@ -260,7 +233,6 @@ div[data-testid="stSelectbox"] * {
     opacity: 1 !important;
 }
 
-/* Focus style */
 .stTextInput div[data-baseweb="input"] > div:focus-within,
 .stNumberInput div[data-baseweb="input"] > div:focus-within,
 .stSelectbox div[data-baseweb="select"] > div:focus-within {
@@ -269,7 +241,6 @@ div[data-testid="stSelectbox"] * {
     outline: none !important;
 }
 
-/* Number input buttons */
 .stNumberInput button {
     background-color: #f8fafc !important;
     color: var(--ink) !important;
@@ -286,14 +257,12 @@ div[data-testid="stSelectbox"] * {
     outline: none !important;
 }
 
-/* Dropdown popup */
 ul[role="listbox"] {
     background: #ffffff !important;
     border: 1px solid #dbe4ee !important;
     border-radius: 12px !important;
 }
 
-/* Dropdown text */
 ul[role="listbox"] li,
 ul[role="listbox"] li span,
 ul[role="listbox"] div {
@@ -301,14 +270,12 @@ ul[role="listbox"] div {
     background: #ffffff !important;
 }
 
-/* Dropdown hover/selected */
 ul[role="listbox"] li:hover,
 ul[role="listbox"] li[aria-selected="true"] {
     background-color: var(--teal-light) !important;
     color: var(--ink) !important;
 }
 
-/* Dropdown arrow */
 .stSelectbox svg,
 div[data-testid="stSelectbox"] svg {
     fill: #64748b !important;
@@ -353,9 +320,7 @@ div[data-testid="stSelectbox"] svg {
     width: 100%;
 }
 
-.stButton > button:hover {
-    background: var(--teal-dark) !important;
-}
+.stButton > button:hover { background: var(--teal-dark) !important; }
 
 /* ================================
    RESULT CARD
@@ -371,15 +336,8 @@ div[data-testid="stSelectbox"] svg {
 }
 
 .high-risk { border-color: #ef4444 !important; }
-.med-risk { border-color: #f59e0b !important; }
-.low-risk { border-color: var(--teal-primary) !important; }
-
-/* ================================
-   HIDDEN STREAMLIT BUTTONS (used as nav triggers)
-================================ */
-.nav-trigger-btn {
-    display: none !important;
-}
+.med-risk  { border-color: #f59e0b !important; }
+.low-risk  { border-color: var(--teal-primary) !important; }
 </style>
 """,
     unsafe_allow_html=True,
@@ -421,9 +379,7 @@ def get_risk_theme(pct):
     return "low-risk", "#f2fafa", "#2d7a7a", "Risiko Rendah"
 
 
-# --- 4. TOP NAVIGATION BAR ---
-page = st.session_state.active_page
-
+# --- 4. RESOLVE NAVIGATION (query params first, BEFORE rendering navbar) ---
 nav_items = {
     "skrining": "Skrining (Home)",
     "detail": "Detail Diagnosis",
@@ -431,10 +387,23 @@ nav_items = {
     "metodologi": "Metodologi",
 }
 
+nav_param = st.query_params.get("nav", None)
+if nav_param and nav_param in nav_items:
+    st.session_state.active_page = nav_param
+
+page = st.session_state.active_page
+
+# --- 5. NAVBAR ---
+# Use <span onclick="window.location.replace(...)"> so clicks stay in the
+# same tab (no <a href> which Streamlit opens in a new tab).
 nav_links_html = ""
 for key, label in nav_items.items():
     active_class = "active" if page == key else ""
-    nav_links_html += f'<a class="{active_class}" href="?nav={key}">{label}</a>'
+    nav_links_html += (
+        f'<span class="{active_class}" '
+        f'onclick="window.location.replace(window.location.pathname + \'?nav={key}\')">'
+        f'{label}</span>'
+    )
 
 st.markdown(
     f"""
@@ -445,20 +414,12 @@ st.markdown(
     <div class="nav-links">
         {nav_links_html}
     </div>
-    <div class="nav-btn">Book Appointment</div>
 </div>
 """,
     unsafe_allow_html=True,
 )
 
-# Resolve navigation from query params
-query_params = st.query_params
-nav_param = query_params.get("nav", None)
-if nav_param and nav_param in nav_items:
-    st.session_state.active_page = nav_param
-    page = nav_param
-
-# --- 5. HERO SECTION (only on Skrining page) ---
+# --- 6. HERO (only on Skrining) ---
 if page == "skrining":
     st.markdown(
         """
@@ -472,11 +433,10 @@ Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola 
         unsafe_allow_html=True,
     )
 
-# --- 6. PAGE CONTENT ---
+# --- 7. PAGE CONTENT ---
 
-# ── PAGE: SKRINING (HOME) ──────────────────────────────────────────────────
+# ── SKRINING (HOME) ────────────────────────────────────────────────────────
 if page == "skrining":
-    # --- FLOATING INPUT BAR ---
     st.markdown('<div class="floating-bar">', unsafe_allow_html=True)
     st.markdown(
         "<p style='font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 12px; text-transform: uppercase;'>Data Pasien</p>",
@@ -504,10 +464,7 @@ if page == "skrining":
         )
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # --- DEPARTMENTS STYLE CARDS (STATS) ---
-    st.markdown(
-        '<div class="section-title">Kapabilitas Sistem</div>', unsafe_allow_html=True
-    )
+    st.markdown('<div class="section-title">Kapabilitas Sistem</div>', unsafe_allow_html=True)
     col_s1, col_s2, col_s3 = st.columns(3)
 
     with col_s1:
@@ -545,11 +502,7 @@ if page == "skrining":
         )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
-
-    # --- QUESTIONNAIRE ---
-    st.markdown(
-        '<div class="section-title">Kuesioner Klinis</div>', unsafe_allow_html=True
-    )
+    st.markdown('<div class="section-title">Kuesioner Klinis</div>', unsafe_allow_html=True)
 
     gejala_list = kb.get_semua_gejala()
     kategori_map = defaultdict(list)
@@ -564,7 +517,7 @@ if page == "skrining":
             f"🩺 {kategori} ({len(gejala_in_kat)} Pertanyaan)",
             expanded=(kategori == "ABCDE"),
         ):
-            if kategori.upper() == "ABCDE" or "ABCDE" in kategori.upper():
+            if "ABCDE" in kategori.upper():
                 st.markdown(
                     """
                 <div style="background-color: #f2fafa; border-left: 4px solid var(--teal-primary); padding: 12px 16px; margin-bottom: 24px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-light);">
@@ -616,7 +569,6 @@ if page == "skrining":
                 )
                 st.session_state.show_inline_result = False
 
-    # --- INLINE RESULTS ---
     if st.session_state.show_inline_result and st.session_state.hasil:
         hasil = st.session_state.hasil["hasil"]
         top = hasil[0] if hasil else None
@@ -633,18 +585,12 @@ if page == "skrining":
                 <div style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px;">
                     <div style="font-weight: 700; font-size: 14px; margin-bottom: 12px; color: {text_col};">Saran Tindakan Cepat:</div>
             """
-
             for s in top.saran:
                 html_result += f"<div style='font-size: 14px; margin-bottom: 8px; color: {text_col}; display: flex; gap: 8px;'><span style='font-weight: bold;'>✓</span> <span>{s}</span></div>"
-
-            html_result += """
-                </div>
-            </div>
-            """
-
+            html_result += "</div></div>"
             st.markdown(html_result, unsafe_allow_html=True)
 
-# ── PAGE: DETAIL DIAGNOSIS ─────────────────────────────────────────────────
+# ── DETAIL DIAGNOSIS ───────────────────────────────────────────────────────
 elif page == "detail":
     sesi = st.session_state.hasil
 
@@ -701,7 +647,6 @@ elif page == "detail":
                             if rule_data and "alasan" in rule_data
                             else ""
                         )
-
                         st.markdown(
                             f"""
                         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 12px;">
@@ -728,7 +673,7 @@ elif page == "detail":
                     mime="text/plain",
                 )
 
-# ── PAGE: RIWAYAT ──────────────────────────────────────────────────────────
+# ── RIWAYAT ────────────────────────────────────────────────────────────────
 elif page == "riwayat":
     if not st.session_state.riwayat:
         st.info("Riwayat konsultasi kosong.")
@@ -747,7 +692,6 @@ elif page == "riwayat":
             if not top_r:
                 continue
             pct_r = round(top_r.persentase, 1)
-
             st.markdown(
                 f"""
             <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
@@ -762,7 +706,7 @@ elif page == "riwayat":
             )
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ── PAGE: METODOLOGI ───────────────────────────────────────────────────────
+# ── METODOLOGI ─────────────────────────────────────────────────────────────
 elif page == "metodologi":
     st.markdown(
         """<div style="background: #ffffff; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">""",
