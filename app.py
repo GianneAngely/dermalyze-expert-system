@@ -110,14 +110,21 @@ section[data-testid="stSidebar"] {
     font-weight: 600;
 }
 
-.nav-links span {
+.nav-links a {
     color: var(--ink-light) !important;
     cursor: pointer;
     transition: color 0.2s;
+    text-decoration: none !important;
 }
 
-.nav-links span:hover {
+.nav-links a:hover {
     color: var(--teal-primary) !important;
+}
+
+.nav-links a.active {
+    color: var(--teal-primary) !important;
+    border-bottom: 2px solid var(--teal-primary);
+    padding-bottom: 2px;
 }
 
 .nav-btn {
@@ -351,23 +358,6 @@ div[data-testid="stSelectbox"] svg {
 }
 
 /* ================================
-   TABS
-================================ */
-div[data-testid="stTabs"] > div > div > div {
-    background: transparent !important;
-}
-
-div[data-testid="stTabs"] button {
-    font-weight: 600 !important;
-    color: var(--ink-light) !important;
-}
-
-div[data-testid="stTabs"] button[aria-selected="true"] {
-    color: var(--teal-primary) !important;
-    border-bottom: 3px solid var(--teal-primary) !important;
-}
-
-/* ================================
    RESULT CARD
 ================================ */
 .result-card-inline {
@@ -383,6 +373,13 @@ div[data-testid="stTabs"] button[aria-selected="true"] {
 .high-risk { border-color: #ef4444 !important; }
 .med-risk { border-color: #f59e0b !important; }
 .low-risk { border-color: var(--teal-primary) !important; }
+
+/* ================================
+   HIDDEN STREAMLIT BUTTONS (used as nav triggers)
+================================ */
+.nav-trigger-btn {
+    display: none !important;
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -410,6 +407,8 @@ if "sesi" not in st.session_state:
     st.session_state.sesi = None
 if "show_inline_result" not in st.session_state:
     st.session_state.show_inline_result = False
+if "active_page" not in st.session_state:
+    st.session_state.active_page = "skrining"
 
 CF_MAP = {"Tidak": 0.0, "Kurang Yakin": 0.4, "Cukup Yakin": 0.8, "Sangat Yakin": 1.0}
 
@@ -423,18 +422,28 @@ def get_risk_theme(pct):
 
 
 # --- 4. TOP NAVIGATION BAR ---
+page = st.session_state.active_page
+
+nav_items = {
+    "skrining": "Skrining (Home)",
+    "detail": "Detail Diagnosis",
+    "riwayat": "Riwayat",
+    "metodologi": "Metodologi",
+}
+
+nav_links_html = ""
+for key, label in nav_items.items():
+    active_class = "active" if page == key else ""
+    nav_links_html += f'<a class="{active_class}" href="?nav={key}">{label}</a>'
+
 st.markdown(
-    """
+    f"""
 <div class="careplus-nav">
     <div class="nav-brand">
         <span class="nav-logo">✚</span> DERMALYZE MEDICAL
     </div>
     <div class="nav-links">
-        <span>Home</span>
-        <span>Services</span>
-        <span>Departments</span>
-        <span>Doctors</span>
-        <span>Contact</span>
+        {nav_links_html}
     </div>
     <div class="nav-btn">Book Appointment</div>
 </div>
@@ -442,9 +451,17 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# --- 5. HERO SECTION ---
-st.markdown(
-    """
+# Resolve navigation from query params
+query_params = st.query_params
+nav_param = query_params.get("nav", None)
+if nav_param and nav_param in nav_items:
+    st.session_state.active_page = nav_param
+    page = nav_param
+
+# --- 5. HERO SECTION (only on Skrining page) ---
+if page == "skrining":
+    st.markdown(
+        """
 <div class="hero-section">
     <div class="hero-title">Kesehatan Kulit Anda Prioritas Kami</div>
     <div class="hero-subtitle">
@@ -452,16 +469,14 @@ Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola 
     </div>
 </div>
 """,
-    unsafe_allow_html=True,
-)
+        unsafe_allow_html=True,
+    )
 
-# --- 6. MAIN CONTENT (TABS) ---
-tab1, tab2, tab3, tab4 = st.tabs(
-    ["Skrining Baru (Home)", "Detail Diagnosis", "Riwayat", "Metodologi"]
-)
+# --- 6. PAGE CONTENT ---
 
-with tab1:
-    # --- FLOATING INPUT BAR (MIMICKING CAREPLUS SEARCH BAR) ---
+# ── PAGE: SKRINING (HOME) ──────────────────────────────────────────────────
+if page == "skrining":
+    # --- FLOATING INPUT BAR ---
     st.markdown('<div class="floating-bar">', unsafe_allow_html=True)
     st.markdown(
         "<p style='font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 12px; text-transform: uppercase;'>Data Pasien</p>",
@@ -531,16 +546,10 @@ with tab1:
 
     st.markdown("<br><br>", unsafe_allow_html=True)
 
-    # --- FEATURED SERVICES STYLE (QUESTIONNAIRE) ---
+    # --- QUESTIONNAIRE ---
     st.markdown(
         '<div class="section-title">Kuesioner Klinis</div>', unsafe_allow_html=True
     )
-    # st.markdown(
-    #     """
-    # <div style="background: #ffffff; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
-    # """,
-    #     unsafe_allow_html=True,
-    # )
 
     gejala_list = kb.get_semua_gejala()
     kategori_map = defaultdict(list)
@@ -616,7 +625,6 @@ with tab1:
             pct = round(top.persentase, 1)
             risk_cls, bg_col, text_col, risk_lbl = get_risk_theme(pct)
 
-            # Kumpulkan seluruh HTML dalam satu variabel string
             html_result = f"""
             <div class="result-card-inline {risk_cls}" style="background-color: {bg_col};">
                 <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: {text_col}; letter-spacing: 1px; margin-bottom: 8px;">{risk_lbl} ({pct}%)</div>
@@ -626,19 +634,18 @@ with tab1:
                     <div style="font-weight: 700; font-size: 14px; margin-bottom: 12px; color: {text_col};">Saran Tindakan Cepat:</div>
             """
 
-            # Tambahkan daftar centang ke dalam variabel string
             for s in top.saran:
                 html_result += f"<div style='font-size: 14px; margin-bottom: 8px; color: {text_col}; display: flex; gap: 8px;'><span style='font-weight: bold;'>✓</span> <span>{s}</span></div>"
 
-            # Tambahkan penutup div
             html_result += """
                 </div>
             </div>
             """
 
-            # Panggil st.markdown satu kali saja agar tidak terpotong
             st.markdown(html_result, unsafe_allow_html=True)
-with tab2:
+
+# ── PAGE: DETAIL DIAGNOSIS ─────────────────────────────────────────────────
+elif page == "detail":
     sesi = st.session_state.hasil
 
     if not sesi:
@@ -721,7 +728,8 @@ with tab2:
                     mime="text/plain",
                 )
 
-with tab3:
+# ── PAGE: RIWAYAT ──────────────────────────────────────────────────────────
+elif page == "riwayat":
     if not st.session_state.riwayat:
         st.info("Riwayat konsultasi kosong.")
     else:
@@ -754,7 +762,8 @@ with tab3:
             )
         st.markdown("</div>", unsafe_allow_html=True)
 
-with tab4:
+# ── PAGE: METODOLOGI ───────────────────────────────────────────────────────
+elif page == "metodologi":
     st.markdown(
         """<div style="background: #ffffff; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">""",
         unsafe_allow_html=True,
