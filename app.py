@@ -76,7 +76,7 @@ section[data-testid="stSidebar"] {
     border-radius: 99px;
     padding: 12px 24px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .nav-brand {
@@ -94,29 +94,37 @@ section[data-testid="stSidebar"] {
     font-size: 24px !important;
 }
 
-.nav-links {
-    display: flex;
-    gap: 30px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-/* nav items are spans with onclick — no <a> to avoid new-tab */
-.nav-links span {
+/* ================================
+   NAVBAR BUTTONS (st.button styled as nav links)
+================================ */
+/* Target the nav button container */
+div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button {
+    background: transparent !important;
     color: var(--ink-light) !important;
-    cursor: pointer;
-    transition: color 0.2s;
-    text-decoration: none !important;
-    padding-bottom: 2px;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 6px 4px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    width: auto !important;
+    min-width: unset !important;
+    transition: color 0.2s !important;
 }
 
-.nav-links span:hover {
+div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button:hover {
+    background: transparent !important;
     color: var(--teal-primary) !important;
+    box-shadow: none !important;
 }
 
-.nav-links span.active {
+/* Active nav button */
+div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button[kind="primary"] {
+    background: transparent !important;
     color: var(--teal-primary) !important;
-    border-bottom: 2px solid var(--teal-primary);
+    border-bottom: 2px solid var(--teal-primary) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 /* ================================
@@ -306,7 +314,7 @@ div[data-testid="stSelectbox"] svg {
 }
 
 /* ================================
-   BUTTON
+   BUTTON (general / submit)
 ================================ */
 .stButton > button {
     background: var(--teal-primary) !important;
@@ -379,7 +387,8 @@ def get_risk_theme(pct):
     return "low-risk", "#f2fafa", "#2d7a7a", "Risiko Rendah"
 
 
-# --- 4. RESOLVE NAVIGATION (query params first, BEFORE rendering navbar) ---
+# --- 4. NAVBAR ---
+# Brand logo on left, nav buttons on right — all inside one row
 nav_items = {
     "skrining": "Skrining (Home)",
     "detail": "Detail Diagnosis",
@@ -387,39 +396,33 @@ nav_items = {
     "metodologi": "Metodologi",
 }
 
-nav_param = st.query_params.get("nav", None)
-if nav_param and nav_param in nav_items:
-    st.session_state.active_page = nav_param
-
 page = st.session_state.active_page
 
-# --- 5. NAVBAR ---
-# Use <span onclick="window.location.replace(...)"> so clicks stay in the
-# same tab (no <a href> which Streamlit opens in a new tab).
-nav_links_html = ""
-for key, label in nav_items.items():
-    active_class = "active" if page == key else ""
-    nav_links_html += (
-        f'<span class="{active_class}" '
-        f'onclick="window.location.replace(window.location.pathname + \'?nav={key}\')">'
-        f'{label}</span>'
+# Render brand + nav as columns inside a styled container
+st.markdown('<div class="careplus-nav">', unsafe_allow_html=True)
+
+brand_col, *nav_cols = st.columns([3, 2, 2, 2, 2])
+
+with brand_col:
+    st.markdown(
+        '<div class="nav-brand"><span class="nav-logo">✚</span> DERMALYZE MEDICAL</div>',
+        unsafe_allow_html=True,
     )
 
-st.markdown(
-    f"""
-<div class="careplus-nav">
-    <div class="nav-brand">
-        <span class="nav-logo">✚</span> DERMALYZE MEDICAL
-    </div>
-    <div class="nav-links">
-        {nav_links_html}
-    </div>
-</div>
-""",
-    unsafe_allow_html=True,
-)
+for col, (key, label) in zip(nav_cols, nav_items.items()):
+    with col:
+        # Use type="primary" for active page so CSS can target it
+        btn_type = "primary" if page == key else "secondary"
+        if st.button(label, key=f"nav_{key}", type=btn_type):
+            st.session_state.active_page = key
+            st.rerun()
 
-# --- 6. HERO (only on Skrining) ---
+st.markdown("</div>", unsafe_allow_html=True)
+
+# Re-read page after potential rerun
+page = st.session_state.active_page
+
+# --- 5. HERO (only on Skrining) ---
 if page == "skrining":
     st.markdown(
         """
@@ -433,7 +436,7 @@ Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola 
         unsafe_allow_html=True,
     )
 
-# --- 7. PAGE CONTENT ---
+# --- 6. PAGE CONTENT ---
 
 # ── SKRINING (HOME) ────────────────────────────────────────────────────────
 if page == "skrining":
