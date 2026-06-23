@@ -36,9 +36,18 @@ st.markdown(
     --bg-main: #f2fafa;
 }
 
-/* --- FIX UNTUK TEXT VISIBILITY --- */
-/* Target teks spesifik saja, hindari span/div agar tidak memunculkan teks _arrow_right */
-.stApp p, .stApp label, .stApp h1, .stApp h2, .stApp h3 {
+/* ================================
+   GLOBAL TEXT
+================================ */
+.stApp,
+.stApp p,
+.stApp label,
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp h4,
+.stApp h5,
+.stApp h6 {
     color: var(--ink) !important;
     font-family: 'Inter', sans-serif;
 }
@@ -59,7 +68,9 @@ section[data-testid="stSidebar"] {
     margin: 0 auto;
 }
 
-/* Careplus Top Navigation Bar */
+/* ================================
+   NAVBAR
+================================ */
 .careplus-nav {
     display: flex;
     align-items: center;
@@ -79,6 +90,12 @@ section[data-testid="stSidebar"] {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 18px !important;
     font-weight: 800 !important;
+    color: var(--ink) !important;
+}
+
+.nav-brand span,
+.nav-brand div {
+    color: var(--ink) !important;
 }
 
 .nav-logo {
@@ -93,8 +110,15 @@ section[data-testid="stSidebar"] {
     font-weight: 600;
 }
 
-.nav-links span { color: var(--ink-light) !important; cursor: pointer; transition: color 0.2s; }
-.nav-links span:hover { color: var(--teal-primary) !important; }
+.nav-links span {
+    color: var(--ink-light) !important;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-links span:hover {
+    color: var(--teal-primary) !important;
+}
 
 .nav-btn {
     background-color: var(--teal-primary) !important;
@@ -106,7 +130,9 @@ section[data-testid="stSidebar"] {
     box-shadow: 0 4px 12px rgba(85, 180, 180, 0.3);
 }
 
-/* Hero Section */
+/* ================================
+   HERO
+================================ */
 .hero-section {
     padding: 20px 0 40px 20px;
     max-width: 600px;
@@ -128,7 +154,9 @@ section[data-testid="stSidebar"] {
     line-height: 1.6 !important;
 }
 
-/* Floating Input Bar */
+/* ================================
+   FLOATING BAR
+================================ */
 .floating-bar {
     background: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(16px);
@@ -140,13 +168,16 @@ section[data-testid="stSidebar"] {
     margin-bottom: 60px;
 }
 
-/* Department Cards Style */
+/* ================================
+   CARDS / SECTION
+================================ */
 .section-title {
     text-align: center;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 24px !important;
     font-weight: 800 !important;
     margin-bottom: 30px;
+    color: var(--ink) !important;
 }
 
 .dept-card {
@@ -159,7 +190,9 @@ section[data-testid="stSidebar"] {
     height: 100%;
 }
 
-.dept-card:hover { transform: translateY(-5px); }
+.dept-card:hover {
+    transform: translateY(-5px);
+}
 
 .dept-icon {
     font-size: 40px;
@@ -170,20 +203,124 @@ section[data-testid="stSidebar"] {
 .dept-title {
     font-weight: 700;
     font-size: 16px;
+    color: var(--ink) !important;
 }
 
-/* --- INTERFACES INPUT & DROPDOWN MAPPING --- */
-input, div[data-baseweb="select"] > div, ul[role="listbox"] {
+/* ================================
+   INPUT / NUMBER / SELECTBOX
+================================ */
+
+/* Outer shells */
+.stTextInput div[data-baseweb="input"] > div,
+.stNumberInput div[data-baseweb="input"] > div,
+.stSelectbox div[data-baseweb="select"] > div {
     background-color: #ffffff !important;
-    border-color: #e2e8f0 !important;
+    border: 1px solid #e2e8f0 !important;
     border-radius: 12px !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+    color: var(--ink) !important;
+}
+
+/* Focus state */
+.stTextInput div[data-baseweb="input"] > div:focus-within,
+.stNumberInput div[data-baseweb="input"] > div:focus-within,
+.stSelectbox div[data-baseweb="select"] > div:focus-within {
+    border-color: var(--teal-primary) !important;
+    box-shadow: 0 0 0 1px var(--teal-primary) !important;
+}
+
+/* Actual text inside input/select */
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox input,
+.stTextInput textarea,
+.stSelectbox div[data-baseweb="select"] *,
+div[data-testid="stSelectbox"] * {
+    color: var(--ink) !important;
+    -webkit-text-fill-color: var(--ink) !important;
+}
+
+/* Selected value text in selectbox */
+.stSelectbox div[data-baseweb="select"] span,
+.stSelectbox div[data-baseweb="select"] div,
+div[data-testid="stSelectbox"] span,
+div[data-testid="stSelectbox"] div {
+    color: var(--ink) !important;
+}
+
+/* Placeholder */
+.stTextInput input::placeholder,
+.stNumberInput input::placeholder,
+.stSelectbox input::placeholder {
+    color: #94a3b8 !important;
+    opacity: 1 !important;
+}
+
+/* Number input buttons */
+.stNumberInput button {
+    background-color: #f8fafc !important;
+    color: var(--ink) !important;
+    border: none !important;
+}
+
+.stNumberInput button:hover {
+    background-color: var(--teal-light) !important;
+    color: var(--teal-primary) !important;
+}
+
+.stNumberInput button:active,
+.stNumberInput button:focus {
+    background-color: var(--teal-light) !important;
+    color: var(--teal-primary) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Dropdown popup */
+ul[role="listbox"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+}
+
+/* Dropdown option text */
+ul[role="listbox"] li,
+ul[role="listbox"] li span,
+ul[role="listbox"] div {
+    color: var(--ink) !important;
+    background-color: #ffffff !important;
+}
+
+/* Hover / selected option */
+ul[role="listbox"] li:hover,
+ul[role="listbox"] li[aria-selected="true"] {
+    background-color: var(--teal-light) !important;
+    color: var(--ink) !important;
+}
+
+/* Dropdown arrow */
+.stSelectbox svg,
+div[data-testid="stSelectbox"] svg {
+    fill: #64748b !important;
+    color: #64748b !important;
+}
+
+/* Keep native input clean */
+input {
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--ink) !important;
+    outline: none !important;
 }
 
 input::placeholder {
     color: #94a3b8 !important;
 }
 
-/* --- FIX UNTUK EXPANDER (DROPDOWN PART) & HOVER --- */
+/* ================================
+   EXPANDER
+================================ */
 [data-testid="stExpander"] details summary {
     background-color: #f8fafc !important;
     border-radius: 12px !important;
@@ -192,20 +329,21 @@ input::placeholder {
     margin-bottom: 8px !important;
 }
 
-/* Mencegah perubahan warna saat kursor di-hover */
 [data-testid="stExpander"] details summary:hover,
 [data-testid="stExpander"] details summary:focus {
     background-color: #f8fafc !important;
     color: var(--ink) !important;
 }
 
-/* Memastikan teks judul expander rapi */
 [data-testid="stExpander"] details summary p {
     font-weight: 600 !important;
     margin: 0 !important;
+    color: var(--ink) !important;
 }
 
-/* Tombol Primary Streamlit */
+/* ================================
+   BUTTON
+================================ */
 .stButton > button {
     background: var(--teal-primary) !important;
     color: white !important;
@@ -222,20 +360,26 @@ input::placeholder {
     background: var(--teal-dark) !important;
 }
 
-/* Tabs Styling */
+/* ================================
+   TABS
+================================ */
 div[data-testid="stTabs"] > div > div > div {
     background: transparent !important;
 }
+
 div[data-testid="stTabs"] button {
     font-weight: 600 !important;
     color: var(--ink-light) !important;
 }
+
 div[data-testid="stTabs"] button[aria-selected="true"] {
     color: var(--teal-primary) !important;
     border-bottom: 3px solid var(--teal-primary) !important;
 }
 
-/* Inline Results */
+/* ================================
+   RESULT CARD
+================================ */
 .result-card-inline {
     background: #ffffff;
     border-radius: 24px;
@@ -245,6 +389,7 @@ div[data-testid="stTabs"] button[aria-selected="true"] {
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     border-left: 8px solid;
 }
+
 .high-risk { border-color: #ef4444 !important; }
 .med-risk { border-color: #f59e0b !important; }
 .low-risk { border-color: var(--teal-primary) !important; }
@@ -420,6 +565,15 @@ with tab1:
             f"🩺 {kategori} ({len(gejala_in_kat)} Pertanyaan)",
             expanded=(kategori == "ABCDE"),
         ):
+            if kategori.upper() == "ABCDE" or "ABCDE" in kategori.upper():
+                st.markdown(
+                    """
+                <div style="background-color: #f2fafa; border-left: 4px solid var(--teal-primary); padding: 12px 16px; margin-bottom: 24px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--ink-light);">
+                    <span style="color: var(--ink); font-weight: 700;">Indikator ABCDE:</span> A - Asymmetry, B - Border, C - Color, D - Diameter, E - Evolving
+                </div>
+                """,
+                    unsafe_allow_html=True,
+                )
             for g in gejala_in_kat:
                 pilihan = st.radio(
                     label=f"**{g['pertanyaan']}**",
