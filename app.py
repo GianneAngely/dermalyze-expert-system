@@ -158,14 +158,14 @@ section[data-testid="stSidebar"] {
    FLOATING BAR
 ================================ */
 .floating-bar {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    margin-bottom: 60px;
+background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+
 }
 
 /* ================================
@@ -456,7 +456,7 @@ st.markdown(
 st.markdown(
     """
 <div class="hero-section">
-    <div class="hero-title">Kesehatan Kulit Anda, Prioritas Kami</div>
+    <div class="hero-title">Kesehatan Kulit Anda Prioritas Kami</div>
     <div class="hero-subtitle">
         Perawatan penuh kasih untuk Anda dan keluarga. Lakukan skrining awal risiko kulit menggunakan sistem pakar terpadu kami.
     </div>
@@ -626,27 +626,28 @@ with tab1:
             pct = round(top.persentase, 1)
             risk_cls, bg_col, text_col, risk_lbl = get_risk_theme(pct)
 
-            st.markdown(
-                f"""
+            # Kumpulkan seluruh HTML dalam satu variabel string
+            html_result = f"""
             <div class="result-card-inline {risk_cls}" style="background-color: {bg_col};">
                 <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: {text_col}; letter-spacing: 1px; margin-bottom: 8px;">{risk_lbl} ({pct}%)</div>
                 <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; color: {text_col}; margin-bottom: 12px; line-height: 1.2;">{top.nama}</div>
                 <div style="font-size: 15px; color: {text_col}; opacity: 0.9; margin-bottom: 20px; line-height: 1.6;">{top.deskripsi}</div>
                 <div style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 16px;">
                     <div style="font-weight: 700; font-size: 14px; margin-bottom: 12px; color: {text_col};">Saran Tindakan Cepat:</div>
-            """,
-                unsafe_allow_html=True,
-            )
+            """
 
+            # Tambahkan daftar centang ke dalam variabel string
             for s in top.saran:
-                st.markdown(
-                    f"<div style='font-size: 14px; margin-bottom: 8px; color: {text_col}; display: flex; gap: 8px;'><span style='font-weight: bold;'>✓</span> <span>{s}</span></div>",
-                    unsafe_allow_html=True,
-                )
+                html_result += f"<div style='font-size: 14px; margin-bottom: 8px; color: {text_col}; display: flex; gap: 8px;'><span style='font-weight: bold;'>✓</span> <span>{s}</span></div>"
 
-            st.markdown("</div></div>", unsafe_allow_html=True)
+            # Tambahkan penutup div
+            html_result += """
+                </div>
+            </div>
+            """
 
-
+            # Panggil st.markdown satu kali saja agar tidak terpotong
+            st.markdown(html_result, unsafe_allow_html=True)
 with tab2:
     sesi = st.session_state.hasil
 
