@@ -66,60 +66,73 @@ section[data-testid="stSidebar"] {
 
 /* ================================
    NAVBAR
+   The pill box is applied directly to the
+   st.columns horizontal block via its
+   data-testid so all children sit inside it.
 ================================ */
-.careplus-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 99px;
-    padding: 12px 24px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    margin-bottom: 20px;
+
+/* Wrap the first horizontal block (navbar row) in the pill */
+div[data-testid="stHorizontalBlock"]:first-of-type {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 99px !important;
+    padding: 8px 24px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    margin-bottom: 36px !important;
+    align-items: center !important;
 }
 
+/* Remove default gap between columns inside navbar */
+div[data-testid="stHorizontalBlock"]:first-of-type > div[data-testid="stColumn"] {
+    padding: 0 4px !important;
+}
+
+/* Brand text */
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    font-size: 18px !important;
+    font-size: 17px !important;
     font-weight: 800 !important;
     color: var(--ink) !important;
+    padding: 6px 0;
+    white-space: nowrap;
 }
 
 .nav-logo {
     color: var(--teal-primary) !important;
-    font-size: 24px !important;
+    font-size: 22px !important;
 }
 
 /* ================================
-   NAVBAR BUTTONS (st.button styled as nav links)
+   NAV BUTTONS — ghost style
 ================================ */
-/* Target the nav button container */
-div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button {
+/* All buttons inside the first horizontal block */
+div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button {
     background: transparent !important;
     color: var(--ink-light) !important;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-    padding: 6px 4px !important;
+    padding: 8px 6px !important;
     font-size: 14px !important;
     font-weight: 600 !important;
-    width: auto !important;
-    min-width: unset !important;
+    width: 100% !important;
     transition: color 0.2s !important;
+    white-space: nowrap !important;
 }
 
-div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button:hover {
+div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button:hover {
     background: transparent !important;
     color: var(--teal-primary) !important;
     box-shadow: none !important;
 }
 
-/* Active nav button */
-div[data-testid="stHorizontalBlock"] div[data-testid="stColumn"] .stButton > button[kind="primary"] {
+/* Active nav button — type="primary" gives it [kind="primaryFormSubmit"] or [kind="primary"] */
+div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="primary"],
+div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="primaryFormSubmit"] {
     background: transparent !important;
     color: var(--teal-primary) !important;
     border-bottom: 2px solid var(--teal-primary) !important;
@@ -315,6 +328,7 @@ div[data-testid="stSelectbox"] svg {
 
 /* ================================
    BUTTON (general / submit)
+   — only targets buttons NOT inside the navbar row
 ================================ */
 .stButton > button {
     background: var(--teal-primary) !important;
@@ -388,7 +402,8 @@ def get_risk_theme(pct):
 
 
 # --- 4. NAVBAR ---
-# Brand logo on left, nav buttons on right — all inside one row
+# This is the FIRST st.columns in the app — the CSS targets
+# div[data-testid="stHorizontalBlock"]:first-of-type to apply the pill style.
 nav_items = {
     "skrining": "Skrining (Home)",
     "detail": "Detail Diagnosis",
@@ -397,9 +412,6 @@ nav_items = {
 }
 
 page = st.session_state.active_page
-
-# Render brand + nav as columns inside a styled container
-st.markdown('<div class="careplus-nav">', unsafe_allow_html=True)
 
 brand_col, *nav_cols = st.columns([3, 2, 2, 2, 2])
 
@@ -411,13 +423,10 @@ with brand_col:
 
 for col, (key, label) in zip(nav_cols, nav_items.items()):
     with col:
-        # Use type="primary" for active page so CSS can target it
         btn_type = "primary" if page == key else "secondary"
         if st.button(label, key=f"nav_{key}", type=btn_type):
             st.session_state.active_page = key
             st.rerun()
-
-st.markdown("</div>", unsafe_allow_html=True)
 
 # Re-read page after potential rerun
 page = st.session_state.active_page
@@ -711,22 +720,20 @@ elif page == "riwayat":
 
 # ── METODOLOGI ─────────────────────────────────────────────────────────────
 elif page == "metodologi":
+    # Page title — no white wrapper box
     st.markdown(
-        """<div style="background: #ffffff; border-radius: 24px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">""",
+        "<h3 style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 28px; color: #0f172a;'>Landasan Teori Sistem Pakar</h3>",
         unsafe_allow_html=True,
     )
-    st.markdown(
-        "<h3 style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 24px;'>Landasan Teori Sistem Pakar</h3>",
-        unsafe_allow_html=True,
-    )
+
     col_m1, col_m2 = st.columns(2)
 
     with col_m1:
         st.markdown(
             """
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; height: 100%;">
-            <div style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: #0f172a;">Metode Forward Chaining</div>
-            <div style="font-size: 14px; line-height: 1.6; color: #475569;">
+        <div style="background: #ffffff; border-radius: 20px; padding: 28px; height: 100%; box-shadow: 0 4px 16px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+            <div style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: #0f172a;">🔗 Metode Forward Chaining</div>
+            <div style="font-size: 14px; line-height: 1.7; color: #475569;">
                 Sistem bekerja dengan metode pelacakan maju. Berawal dari mengumpulkan fakta berupa input gejala dari pasien (berbasis Data-Driven). Mesin kemudian menyusuri seluruh rule if-then yang ada di basis pengetahuan dan menyimpulkan risiko kanker kulit yang paling relevan.
             </div>
         </div>
@@ -737,16 +744,15 @@ elif page == "metodologi":
     with col_m2:
         st.markdown(
             """
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; height: 100%;">
-            <div style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: #0f172a;">Certainty Factor (Metode Ketidakpastian)</div>
-            <div style="font-size: 14px; line-height: 1.6; color: #475569;">
+        <div style="background: #ffffff; border-radius: 20px; padding: 28px; height: 100%; box-shadow: 0 4px 16px rgba(0,0,0,0.04); border: 1px solid #e2e8f0;">
+            <div style="font-weight: 800; font-size: 16px; margin-bottom: 12px; color: #0f172a;">🧠 Certainty Factor (Metode Ketidakpastian)</div>
+            <div style="font-size: 14px; line-height: 1.7; color: #475569;">
                 Karena analisis medis sering kali tidak absolut, algoritma ini menggabungkan nilai bobot dari kepastian pakar (CF Rule) dengan tingkat keyakinan pasien saat menjawab gejala (CF User). Semakin banyak rule yang cocok, semakin tinggi persentase kepastian akhir.
             </div>
         </div>
         """,
             unsafe_allow_html=True,
         )
-    st.markdown("</div>", unsafe_allow_html=True)
 
     if not validation.get("valid", True):
         st.error("Ditemukan anomali pada Knowledge Base:")
