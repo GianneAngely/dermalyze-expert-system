@@ -206,50 +206,46 @@ background: transparent !important;
     color: var(--ink) !important;
 }
 
+
 /* ================================
-   INPUT / NUMBER / SELECTBOX
+   FINAL FIX — INPUT / NUMBER / SELECTBOX
 ================================ */
 
-/* Outer shells */
+/* Main outer field */
 .stTextInput div[data-baseweb="input"] > div,
 .stNumberInput div[data-baseweb="input"] > div,
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    border-radius: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid #dbe4ee !important;
+    border-radius: 14px !important;
     box-shadow: none !important;
-    transition: all 0.2s ease !important;
-    color: var(--ink) !important;
+    min-height: 48px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-/* Focus state */
-.stTextInput div[data-baseweb="input"] > div:focus-within,
-.stNumberInput div[data-baseweb="input"] > div:focus-within,
-.stSelectbox div[data-baseweb="select"] > div:focus-within {
-    border-color: var(--teal-primary) !important;
-    box-shadow: 0 0 0 1px var(--teal-primary) !important;
+/* Remove Streamlit default inner border */
+.stTextInput div[data-baseweb="input"],
+.stNumberInput div[data-baseweb="input"],
+.stTextInput input,
+.stNumberInput input,
+.stSelectbox input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
-/* Actual text inside input/select */
+/* Text color */
 .stTextInput input,
 .stNumberInput input,
 .stSelectbox input,
-.stTextInput textarea,
 .stSelectbox div[data-baseweb="select"] *,
 div[data-testid="stSelectbox"] * {
     color: var(--ink) !important;
     -webkit-text-fill-color: var(--ink) !important;
 }
 
-/* Selected value text in selectbox */
-.stSelectbox div[data-baseweb="select"] span,
-.stSelectbox div[data-baseweb="select"] div,
-div[data-testid="stSelectbox"] span,
-div[data-testid="stSelectbox"] div {
-    color: var(--ink) !important;
-}
-
-/* Placeholder */
+/* Placeholder color */
 .stTextInput input::placeholder,
 .stNumberInput input::placeholder,
 .stSelectbox input::placeholder {
@@ -257,20 +253,26 @@ div[data-testid="stSelectbox"] div {
     opacity: 1 !important;
 }
 
+/* Focus style */
+.stTextInput div[data-baseweb="input"] > div:focus-within,
+.stNumberInput div[data-baseweb="input"] > div:focus-within,
+.stSelectbox div[data-baseweb="select"] > div:focus-within {
+    border: 1px solid var(--teal-primary) !important;
+    box-shadow: 0 0 0 2px rgba(85, 180, 180, 0.12) !important;
+    outline: none !important;
+}
+
 /* Number input buttons */
 .stNumberInput button {
     background-color: #f8fafc !important;
     color: var(--ink) !important;
     border: none !important;
+    box-shadow: none !important;
 }
 
-.stNumberInput button:hover {
-    background-color: var(--teal-light) !important;
-    color: var(--teal-primary) !important;
-}
-
-.stNumberInput button:active,
-.stNumberInput button:focus {
+.stNumberInput button:hover,
+.stNumberInput button:focus,
+.stNumberInput button:active {
     background-color: var(--teal-light) !important;
     color: var(--teal-primary) !important;
     box-shadow: none !important;
@@ -279,20 +281,20 @@ div[data-testid="stSelectbox"] div {
 
 /* Dropdown popup */
 ul[role="listbox"] {
-    background-color: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    border: 1px solid #dbe4ee !important;
     border-radius: 12px !important;
 }
 
-/* Dropdown option text */
+/* Dropdown text */
 ul[role="listbox"] li,
 ul[role="listbox"] li span,
 ul[role="listbox"] div {
     color: var(--ink) !important;
-    background-color: #ffffff !important;
+    background: #ffffff !important;
 }
 
-/* Hover / selected option */
+/* Dropdown hover/selected */
 ul[role="listbox"] li:hover,
 ul[role="listbox"] li[aria-selected="true"] {
     background-color: var(--teal-light) !important;
@@ -304,18 +306,6 @@ ul[role="listbox"] li[aria-selected="true"] {
 div[data-testid="stSelectbox"] svg {
     fill: #64748b !important;
     color: #64748b !important;
-}
-
-/* Keep native input clean */
-input {
-    background-color: transparent !important;
-    border: none !important;
-    color: var(--ink) !important;
-    outline: none !important;
-}
-
-input::placeholder {
-    color: #94a3b8 !important;
 }
 
 /* ================================
@@ -458,7 +448,7 @@ st.markdown(
 <div class="hero-section">
     <div class="hero-title">Kesehatan Kulit Anda Prioritas Kami</div>
     <div class="hero-subtitle">
-        Perawatan penuh kasih untuk Anda dan keluarga. Lakukan skrining awal risiko kulit menggunakan sistem pakar terpadu kami.
+Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola gejala ABCDE dan komplikasi medis lainnya. Aplikasi ini bukan pengganti diagnosis dokter spesialis
     </div>
 </div>
 """,
