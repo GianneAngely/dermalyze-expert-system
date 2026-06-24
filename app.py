@@ -436,7 +436,7 @@ if page == "skrining":
     st.markdown(
         """
 <div class="hero-section">
-    <div class="hero-title">Kesehatan Kulit Anda Prioritas Kami</div>
+    <div class="hero-title">Dermalyze: System Pakar Skrining Risiko Kanker Kulit</div>
     <div class="hero-subtitle">
 Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola gejala ABCDE dan komplikasi medis lainnya. Aplikasi ini bukan pengganti diagnosis dokter spesialis
     </div>
@@ -476,7 +476,9 @@ if page == "skrining":
         )
     st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Kapabilitas Sistem</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">Kapabilitas Sistem</div>', unsafe_allow_html=True
+    )
     col_s1, col_s2, col_s3 = st.columns(3)
 
     with col_s1:
@@ -514,7 +516,9 @@ if page == "skrining":
         )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
-    st.markdown('<div class="section-title">Kuesioner Klinis</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">Kuesioner Klinis</div>', unsafe_allow_html=True
+    )
 
     gejala_list = kb.get_semua_gejala()
     kategori_map = defaultdict(list)
