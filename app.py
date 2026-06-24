@@ -12,7 +12,6 @@ from backward_chaining import BackwardChaining
 from validators import KnowledgeBaseValidator
 from report_generator import ReportGenerator
 
-# --- 1. PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="Dermalyze | Careplus Theme",
     page_icon="🩺",
@@ -20,7 +19,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# --- 2. CUSTOM CSS ---
 st.markdown(
     """
 <style>
@@ -64,14 +62,6 @@ section[data-testid="stSidebar"] {
     margin: 0 auto;
 }
 
-/* ================================
-   NAVBAR
-   The pill box is applied directly to the
-   st.columns horizontal block via its
-   data-testid so all children sit inside it.
-================================ */
-
-/* Wrap the first horizontal block (navbar row) in the pill */
 div[data-testid="stHorizontalBlock"]:first-of-type {
     background: rgba(255, 255, 255, 0.92) !important;
     backdrop-filter: blur(10px) !important;
@@ -83,12 +73,10 @@ div[data-testid="stHorizontalBlock"]:first-of-type {
     align-items: center !important;
 }
 
-/* Remove default gap between columns inside navbar */
 div[data-testid="stHorizontalBlock"]:first-of-type > div[data-testid="stColumn"] {
     padding: 0 4px !important;
 }
 
-/* Brand text */
 .nav-brand {
     display: flex;
     align-items: center;
@@ -106,10 +94,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type > div[data-testid="stColumn"]
     font-size: 22px !important;
 }
 
-/* ================================
-   NAV BUTTONS — ghost style
-================================ */
-/* All buttons inside the first horizontal block */
 div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button {
     background: transparent !important;
     color: var(--ink-light) !important;
@@ -130,7 +114,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button:hover {
     box-shadow: none !important;
 }
 
-/* Active nav button — type="primary" gives it [kind="primaryFormSubmit"] or [kind="primary"] */
 div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="primary"],
 div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="primaryFormSubmit"] {
     background: transparent !important;
@@ -140,9 +123,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="prim
     box-shadow: none !important;
 }
 
-/* ================================
-   HERO
-================================ */
 .hero-section {
     padding: 20px 0 40px 20px;
     max-width: 600px;
@@ -164,9 +144,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="prim
     line-height: 1.6 !important;
 }
 
-/* ================================
-   FLOATING BAR
-================================ */
 .floating-bar {
     background: transparent !important;
     backdrop-filter: none !important;
@@ -177,9 +154,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="prim
     margin-bottom: 24px !important;
 }
 
-/* ================================
-   CARDS / SECTION
-================================ */
 .section-title {
     text-align: center;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -213,9 +187,6 @@ div[data-testid="stHorizontalBlock"]:first-of-type .stButton > button[kind="prim
     color: var(--ink) !important;
 }
 
-/* ================================
-   INPUT / NUMBER / SELECTBOX
-================================ */
 .stTextInput div[data-baseweb="input"] > div,
 .stNumberInput div[data-baseweb="input"] > div,
 .stSelectbox div[data-baseweb="select"] > div {
@@ -303,9 +274,6 @@ div[data-testid="stSelectbox"] svg {
     color: #64748b !important;
 }
 
-/* ================================
-   EXPANDER
-================================ */
 [data-testid="stExpander"] details summary {
     background-color: #f8fafc !important;
     border-radius: 12px !important;
@@ -326,10 +294,6 @@ div[data-testid="stSelectbox"] svg {
     color: var(--ink) !important;
 }
 
-/* ================================
-   BUTTON (general / submit)
-   — only targets buttons NOT inside the navbar row
-================================ */
 .stButton > button {
     background: var(--teal-primary) !important;
     color: white !important;
@@ -344,9 +308,6 @@ div[data-testid="stSelectbox"] svg {
 
 .stButton > button:hover { background: var(--teal-dark) !important; }
 
-/* ================================
-   RESULT CARD
-================================ */
 .result-card-inline {
     background: #ffffff;
     border-radius: 24px;
@@ -366,7 +327,6 @@ div[data-testid="stSelectbox"] svg {
 )
 
 
-# --- 3. SYSTEM INITIALIZATION ---
 @st.cache_resource
 def init_system():
     kb = KnowledgeBase()
@@ -401,9 +361,6 @@ def get_risk_theme(pct):
     return "low-risk", "#f2fafa", "#2d7a7a", "Risiko Rendah"
 
 
-# --- 4. NAVBAR ---
-# This is the FIRST st.columns in the app — the CSS targets
-# div[data-testid="stHorizontalBlock"]:first-of-type to apply the pill style.
 nav_items = {
     "skrining": "Skrining (Home)",
     "detail": "Detail Diagnosis",
@@ -428,10 +385,8 @@ for col, (key, label) in zip(nav_cols, nav_items.items()):
             st.session_state.active_page = key
             st.rerun()
 
-# Re-read page after potential rerun
 page = st.session_state.active_page
 
-# --- 5. HERO (only on Skrining) ---
 if page == "skrining":
     st.markdown(
         """
@@ -445,9 +400,6 @@ Dermalyze membantu melakukan estimasi awal risiko kanker kulit berdasarkan pola 
         unsafe_allow_html=True,
     )
 
-# --- 6. PAGE CONTENT ---
-
-# ── SKRINING (HOME) ────────────────────────────────────────────────────────
 if page == "skrining":
     st.markdown('<div class="floating-bar">', unsafe_allow_html=True)
     st.markdown(
@@ -606,7 +558,6 @@ if page == "skrining":
             html_result += "</div></div>"
             st.markdown(html_result, unsafe_allow_html=True)
 
-# ── DETAIL DIAGNOSIS ───────────────────────────────────────────────────────
 elif page == "detail":
     sesi = st.session_state.hasil
 
@@ -689,7 +640,6 @@ elif page == "detail":
                     mime="text/plain",
                 )
 
-# ── RIWAYAT ────────────────────────────────────────────────────────────────
 elif page == "riwayat":
     if not st.session_state.riwayat:
         st.info("Riwayat konsultasi kosong.")
@@ -722,9 +672,7 @@ elif page == "riwayat":
             )
         st.markdown("</div>", unsafe_allow_html=True)
 
-# ── METODOLOGI ─────────────────────────────────────────────────────────────
 elif page == "metodologi":
-    # Page title — no white wrapper box
     st.markdown(
         "<h3 style='font-family: \"Plus Jakarta Sans\", sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 28px; color: #0f172a;'>Landasan Teori Sistem Pakar</h3>",
         unsafe_allow_html=True,
