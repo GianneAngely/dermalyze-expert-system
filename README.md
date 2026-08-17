@@ -1,6 +1,10 @@
 # Dermalyze Expert System
 
-A rule-based expert system prototype for early risk screening of skin lesions, combining **Forward Chaining** inference with **Certainty Factor** reasoning.
+A rule-based expert system prototype for early risk screening of skin lesions, combining **Forward Chaining** inference with **Certainty Factor** reasoning. Screening follows the ABCDE pattern alongside other clinical indicators.
+
+![The Dermalyze consultation screen](screenshot.png)
+
+The knowledge base currently holds **22 clinical parameters**, **25 production rules**, and **5 classifications**.
 
 ## Important disclaimer
 
